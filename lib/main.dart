@@ -1,9 +1,9 @@
+import 'package:Getx/screens/home_screen.dart';
+import 'package:Getx/widgets/alert_dialog.dart';
+import 'package:Getx/widgets/bottom_sheet.dart';
+import 'package:Getx/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sample/screens/home_screen.dart';
-import 'package:sample/widgets/alert_dialog.dart';
-import 'package:sample/widgets/bottom_sheet.dart';
-import 'package:sample/widgets/snackbar.dart';
 
 void main() {
   runApp(const MyApp());
