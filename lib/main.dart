@@ -1,6 +1,8 @@
 import 'package:Getx/screens/home_screen.dart';
 import 'package:Getx/widgets/alert_dialog.dart';
 import 'package:Getx/widgets/bottom_sheet.dart';
+import 'package:Getx/widgets/named_route.dart';
+import 'package:Getx/widgets/navigate_route.dart';
 import 'package:Getx/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,15 +18,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: "/",
+      defaultTransition: Transition.zoom,
+      getPages: [
+        GetPage(name: '/', page: () => MyApp()),
+        GetPage(
+            name: '/home',
+            page: () => Home_Screen(),
+            transition: Transition.leftToRight)
+      ],
       theme: ThemeData(
         appBarTheme: AppBarTheme(color: Colors.purple),
       ),
       title: 'GETX',
       home: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
           title: Text(
-            'GETX',
+            'State Management - GETX',
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -36,24 +46,8 @@ class MyApp extends StatelessWidget {
               SnackBar_Screen(),
               AlertDialog_Screen(),
               BottomSheet_Screen(),
-              ElevatedButton(
-                  onPressed: () async {
-                    var data = await Get.to(
-                      Home_Screen(),
-                      arguments: "Data from Main",
-                      fullscreenDialog: true,
-                      transition: Transition.zoom,
-                      duration: Duration(milliseconds: 900),
-                      // curve: Curves.bounceInOut,
-                    );
-                    print("The recieved data is $data");
-                    // This will not return..!
-                    // Get.off(Home_Screen());
-
-                    // Go to Home and removing all previous screens...!
-                    // Get.offAll(Home_Screen());
-                  },
-                  child: Text('Go to Next Screen')),
+              Navigate_Route_Screen(),
+              NamedRoute_Screen(),
             ],
           ),
         ),
